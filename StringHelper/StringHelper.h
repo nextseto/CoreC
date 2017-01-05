@@ -6,16 +6,22 @@
 #ifndef StringHelper_h
 #define StringHelper_h
 
+/** Structure that allows 2D arrays (with the number of Strings) to be passed by value */
+typedef struct Array {
+    int stringNum;
+    char** value;
+} StringArray;
+
 /** Returns the number of characters in the string */
-int stringLength(char* input);
+int stringLength(const char* input);
 
 /** If the substring is found in the searchString then return the index of the first character in the searchString. Otherwise, return -1. Note: This is case-sensitive */
-int stringFind(char* searchString, char* subString);
+int stringFind(const char* searchString, const char* subString);
 
 /** Returns the character values in the string */
-char* stringCopy(char* input);
+char* stringCopy(const char* input);
 
-/** Returns an array of strings split at each point where the separator occurs in the given input String. Note: Pass a int pointer to get the size of 1D pointers. */
-char* stringSplit(char* inputString, char* seperatorString, int resultSizePtr);
+/** Returns a structure with: the array of strings split at each point where the separator occurs in the given input String and the number of strings in a 2D array. */
+StringArray stringSplit(char* inputString, const char* seperatorString);
 
 #endif /* StringHelper_h */
