@@ -8,8 +8,8 @@
 
 /** Structure that allows 2D arrays (with the number of Strings) to be passed by value */
 typedef struct Array {
-    int stringNum;
-    char** value;
+    int num;
+    char** values;
 } StringArray;
 
 /** Returns the number of characters in the string */

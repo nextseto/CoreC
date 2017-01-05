@@ -24,13 +24,13 @@ int main(int argc, const char * argv[])
     StringArray output = stringSplit(temp, ".");
     
     int count, count2;
-    for(count = 0; count < output.stringNum; count++)
+    for(count = 0; count < output.num; count++)
     {
         printf("temp[%i] = ", count);
         
-        for(count2 = 0; count2 < output.stringNum; count2++)
+        for(count2 = 0; count2 < strlen(output.values[count]); count2++)
         {
-            printf("%c", output.value[count][count2]);
+            printf("%c", output.values[count][count2]);
         }
         printf("\n");
     }

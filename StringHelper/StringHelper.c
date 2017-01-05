@@ -77,13 +77,15 @@ StringArray stringSplit(char* inputString, const char* seperatorString)
     
     output = _stringAppend2D(startPointer, endPointer, output, &stringCount, 0);
     
-    return (StringArray){ .stringNum = stringCount, .value = output };
+    return (StringArray){ .num = stringCount, .values = output };
 }
 
+
+/// Helper Functions
+
 /*
- Helper Functions
- 
-*/
+
+ */
 char** _stringAppend2D(char* startPointer, char* endPointer, char** appendingArray, int* currentSize, int* alertSize)
 {
     if (alertSize)
