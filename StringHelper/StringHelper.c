@@ -99,10 +99,10 @@ char** _stringAppend2D(char* startPointer, char* endPointer, char** appendingArr
         appendingArray = realloc(appendingArray, sizeof(char*) * (*currentSize + 1));
     }
     
-    const size_t stringSize = (startPointer - endPointer) * sizeof(char);
+    const size_t stringSize = startPointer - endPointer;
     appendingArray[*currentSize] = malloc((stringSize + 1) * sizeof(char));
     
-    memcpy(appendingArray[*currentSize], endPointer, stringSize);
+    memcpy(appendingArray[*currentSize], endPointer, stringSize * sizeof(char));
     appendingArray[*currentSize][stringSize] = '\0';
     
     (*currentSize)++;
