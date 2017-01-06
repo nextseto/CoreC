@@ -10,6 +10,15 @@
 #include <string.h>
 
 /*
+ Name : arraySlice
+ 
+ Description : Returns a generic array that contains the elements inputArray[start] ... inputArray[end] inclusively
+ 
+ Motivation :
+ 
+ API Details :
+ 
+ Returns :
  
  */
 void* arraySlice(const void* inputArray, int startIndex, int endIndex, int sizePerElement)

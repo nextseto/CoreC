@@ -23,8 +23,9 @@ int main(int argc, const char * argv[])
     char* temp = "abc.def.ghi.abc.def.ghi.abc.def.ghi.abc.def.ghi";
     StringArray output = stringSplit(temp, ".");
     
+    
     int count, count2;
-    for(count = 0; count < output.num; count++)
+    for(count = 0; count < output.length; count++)
     {
         printf("temp[%i] = ", count);
         
@@ -34,6 +35,9 @@ int main(int argc, const char * argv[])
         }
         printf("\n");
     }
+    
+    
+    freeStringArray(&output);
     
     // ========================
     
