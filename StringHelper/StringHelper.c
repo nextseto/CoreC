@@ -5,7 +5,7 @@
 
 #include "StringHelper.h"
 
-/** Standard Library Headers */
+/** Standard Libraries */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -92,7 +92,7 @@ int stringFind(const char* searchString, const char* subString)
 /*
  Name : stringReplace
  
- Description : Returns a new string with all matches of a pattern replaced by the substring
+ Description : Returns a new string with all matches of the old substring replaced by the new substring
  
  Motivation :
  
@@ -101,9 +101,41 @@ int stringFind(const char* searchString, const char* subString)
  Returns :
  
  */
-char* stringReplace(char* input, const char* replaceSubString)
+char* stringReplace(char* input, const char* oldSubString, const char* newSubString)
 {
-    return "";
+    char* startPointer = input;
+    
+    size_t inputLength = strlen(startPointer);
+    const size_t oldLength = strlen(oldSubString);
+    const size_t newLength = strlen(newSubString);
+    
+    char* outputString = malloc((oldLength >= newLength ? inputLength : newLength * inputLength) * sizeof(char));
+    
+    inputLength = 0;
+    
+    while (*startPointer)
+    {
+        if (*startPointer == *oldSubString)
+        {
+            if (!strncmp(startPointer, oldSubString, oldLength * (sizeof(char))))
+            {
+                memcpy(outputString + inputLength, newSubString, newLength * sizeof(char));
+                
+                inputLength += newLength;
+                startPointer += oldLength;
+                continue;
+            }
+        }
+        
+        outputString[inputLength] = (*startPointer);
+        inputLength++;
+        startPointer++;
+    }
+    
+    outputString = realloc(outputString, inputLength + 1);
+    outputString[inputLength] = '\0';
+    
+    return outputString;
 }
 
 
@@ -136,7 +168,7 @@ StringArray stringSplit(char* inputString, const char* seperatorString)
     {
         if (*startPointer == *seperatorString)
         {
-            if (!memcmp(startPointer, seperatorString, seperatorSize))
+            if (!strncmp(startPointer, seperatorString, seperatorSize))
             {
                 output = _stringAppend2D(startPointer, endPointer, output, &stringCount, &startSize);
                 

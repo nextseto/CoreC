@@ -11,10 +11,10 @@
 		C551BC001E1D9500007CB163 /* ArrayHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = C551BBFE1E1D9500007CB163 /* ArrayHelper.c */; };
 		C551BC041E1D951B007CB163 /* StringHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = C551BC021E1D951B007CB163 /* StringHelper.c */; };
 		C551BC0C1E1D95DB007CB163 /* Console.c in Sources */ = {isa = PBXBuildFile; fileRef = C551BC0A1E1D95DB007CB163 /* Console.c */; };
-		C551BC0F1E1D9600007CB163 /* tests.c in Sources */ = {isa = PBXBuildFile; fileRef = C551BC0E1E1D9600007CB163 /* tests.c */; };
 		C59DA6731E201F47004719A1 /* StringHelperTests.c in Sources */ = {isa = PBXBuildFile; fileRef = C59DA6711E201F47004719A1 /* StringHelperTests.c */; };
 		C59DA6771E201F9A004719A1 /* ArrayHelperTests.c in Sources */ = {isa = PBXBuildFile; fileRef = C59DA6751E201F9A004719A1 /* ArrayHelperTests.c */; };
 		C59DA67B1E201FD9004719A1 /* ConsoleTests.c in Sources */ = {isa = PBXBuildFile; fileRef = C59DA6791E201FD9004719A1 /* ConsoleTests.c */; };
+		C59DA68D1E205107004719A1 /* tests.c in Sources */ = {isa = PBXBuildFile; fileRef = C551BC0E1E1D9600007CB163 /* tests.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,7 +91,7 @@
 			children = (
 				C551BBFF1E1D9500007CB163 /* ArrayHelper.h */,
 				C551BBFE1E1D9500007CB163 /* ArrayHelper.c */,
-				C59DA6781E201FB1004719A1 /* ArrayHelperTests */,
+				C59DA6781E201FB1004719A1 /* tests */,
 			);
 			name = ArrayHelper;
 			path = ..;
@@ -102,7 +102,7 @@
 			children = (
 				C551BC031E1D951B007CB163 /* StringHelper.h */,
 				C551BC021E1D951B007CB163 /* StringHelper.c */,
-				C59DA6741E201F4B004719A1 /* StringHelperTests */,
+				C59DA6741E201F4B004719A1 /* tests */,
 			);
 			name = StringHelper;
 			path = ..;
@@ -113,38 +113,37 @@
 			children = (
 				C551BC0B1E1D95DB007CB163 /* Console.h */,
 				C551BC0A1E1D95DB007CB163 /* Console.c */,
-				C59DA67C1E201FDC004719A1 /* ConsoleTests */,
+				C59DA67C1E201FDC004719A1 /* tests */,
 			);
 			name = Console;
 			path = ..;
 			sourceTree = "<group>";
 		};
-		C59DA6741E201F4B004719A1 /* StringHelperTests */ = {
+		C59DA6741E201F4B004719A1 /* tests */ = {
 			isa = PBXGroup;
 			children = (
 				C59DA6721E201F47004719A1 /* StringHelperTests.h */,
 				C59DA6711E201F47004719A1 /* StringHelperTests.c */,
 			);
-			name = StringHelperTests;
 			path = tests;
 			sourceTree = "<group>";
 		};
-		C59DA6781E201FB1004719A1 /* ArrayHelperTests */ = {
+		C59DA6781E201FB1004719A1 /* tests */ = {
 			isa = PBXGroup;
 			children = (
 				C59DA6761E201F9A004719A1 /* ArrayHelperTests.h */,
 				C59DA6751E201F9A004719A1 /* ArrayHelperTests.c */,
 			);
-			name = ArrayHelperTests;
+			name = tests;
 			sourceTree = "<group>";
 		};
-		C59DA67C1E201FDC004719A1 /* ConsoleTests */ = {
+		C59DA67C1E201FDC004719A1 /* tests */ = {
 			isa = PBXGroup;
 			children = (
 				C59DA67A1E201FD9004719A1 /* ConsoleTests.h */,
 				C59DA6791E201FD9004719A1 /* ConsoleTests.c */,
 			);
-			name = ConsoleTests;
+			name = tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,10 +202,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C551BC0F1E1D9600007CB163 /* tests.c in Sources */,
 				C59DA6771E201F9A004719A1 /* ArrayHelperTests.c in Sources */,
 				C551BBF81E1D94D5007CB163 /* main.c in Sources */,
 				C59DA6731E201F47004719A1 /* StringHelperTests.c in Sources */,
+				C59DA68D1E205107004719A1 /* tests.c in Sources */,
 				C551BC0C1E1D95DB007CB163 /* Console.c in Sources */,
 				C59DA67B1E201FD9004719A1 /* ConsoleTests.c in Sources */,
 				C551BC001E1D9500007CB163 /* ArrayHelper.c in Sources */,

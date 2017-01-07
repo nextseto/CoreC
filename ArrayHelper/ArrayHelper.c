@@ -5,7 +5,7 @@
 
 #include "ArrayHelper.h"
 
-/** Standard Library Headers */
+/** Standard Libraries */
 #include <stdlib.h>
 #include <string.h>
 
