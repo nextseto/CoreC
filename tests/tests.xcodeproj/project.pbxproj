@@ -320,6 +320,7 @@
 		C551BBFC1E1D94D5007CB163 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LLVM_LTO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -327,6 +328,8 @@
 		C551BBFD1E1D94D5007CB163 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = fast;
+				LLVM_LTO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

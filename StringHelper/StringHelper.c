@@ -60,12 +60,12 @@ void stringDisassemble(const char* input, const char* format, ...)
  */
 char* stringCopy(const char* input)
 {
-    const size_t stringSize = strlen(input) + 1;
-    char *stringBuffer = malloc(stringSize);
+    const size_t stringSize = (strlen(input) + 1) * sizeof(char);
+    char* buffer = malloc(stringSize);
     
-    if (stringBuffer == NULL) { return NULL; }
+    if (buffer == NULL) { return NULL; }
     
-    return (char *)memcpy(stringBuffer, input, stringSize);
+    return (char *)memcpy(buffer, input, stringSize);
 }
 
 
@@ -83,7 +83,7 @@ char* stringCopy(const char* input)
  */
 int stringFind(const char* searchString, const char* subString)
 {
-    const int indexAt = (int)(strstr(searchString, subString) - searchString);
+    const int indexAt = (int)(strstr(searchString, subString) - searchString) / sizeof(char);
     
     return (indexAt < 0) ? -1 : indexAt;
 }
@@ -103,9 +103,9 @@ int stringFind(const char* searchString, const char* subString)
  */
 char* stringReplace(char* input, const char* oldSubString, const char* newSubString)
 {
-    char* startPointer = input;
+    char* frontPointer = input;
     
-    size_t inputLength = strlen(startPointer);
+    size_t inputLength = strlen(frontPointer);
     const size_t oldLength = strlen(oldSubString);
     const size_t newLength = strlen(newSubString);
     
@@ -113,22 +113,22 @@ char* stringReplace(char* input, const char* oldSubString, const char* newSubStr
     
     inputLength = 0;
     
-    while (*startPointer)
+    while (*frontPointer)
     {
-        if (*startPointer == *oldSubString)
+        if (*frontPointer == *oldSubString)
         {
-            if (!strncmp(startPointer, oldSubString, oldLength * (sizeof(char))))
+            if (!strncmp(frontPointer, oldSubString, oldLength * (sizeof(char))))
             {
                 memcpy(outputString + inputLength, newSubString, newLength * sizeof(char));
                 
                 inputLength += newLength;
-                startPointer += oldLength;
+                frontPointer += oldLength;
                 continue;
             }
         }
         
-        outputString[inputLength++] = *startPointer;
-        startPointer++;
+        outputString[inputLength++] = *frontPointer;
+        frontPointer++;
     }
     
     outputString = realloc(outputString, inputLength + 1);
@@ -158,29 +158,29 @@ StringArray stringSplit(char* inputString, const char* seperatorString)
     int stringCount = 0, bufferSize = 10;
     char** output = malloc(bufferSize * sizeof(char*));
     
-    char* startPointer = inputString;
-    char* endPointer = inputString;
+    char* frontPointer = inputString;
+    char* backPointer = inputString;
     
     const size_t seperatorSize = strlen(seperatorString);
     
-    while (*startPointer)
+    while (*frontPointer)
     {
-        if (*startPointer == *seperatorString)
+        if (*frontPointer == *seperatorString)
         {
-            if (!strncmp(startPointer, seperatorString, seperatorSize))
+            if (!strncmp(frontPointer, seperatorString, seperatorSize))
             {
-                output = _stringAppend2D(startPointer, endPointer, output, &stringCount, &bufferSize);
+                output = _stringAppend2D(frontPointer, backPointer, output, &stringCount, &bufferSize);
                 
-                startPointer += seperatorSize;
-                endPointer = startPointer;
+                frontPointer += seperatorSize;
+                backPointer = frontPointer;
                 continue;
             }
         }
         
-        ++startPointer;
+        ++frontPointer;
     }
     
-    output = _stringAppend2D(startPointer, endPointer, output, &stringCount, 0);
+    output = _stringAppend2D(frontPointer, backPointer, output, &stringCount, 0);
     
     return (StringArray){ .length = stringCount, .values = output };
 }
@@ -241,7 +241,7 @@ void freeStringArray(StringArray* input)
  Returns :
  
  */
-char** _stringAppend2D(char* startPointer, char* endPointer, char** appendingArray, int* currentSize, int* alertSize)
+char** _stringAppend2D(char* frontPointer, char* backPointer, char** appendingArray, int* currentSize, int* alertSize)
 {
     if (alertSize)
     {
@@ -256,10 +256,10 @@ char** _stringAppend2D(char* startPointer, char* endPointer, char** appendingArr
         appendingArray = realloc(appendingArray, sizeof(char*) * (*currentSize + 1));
     }
     
-    const size_t stringSize = startPointer - endPointer;
+    const size_t stringSize = frontPointer - backPointer;
     appendingArray[*currentSize] = malloc((stringSize + 1) * sizeof(char));
     
-    memcpy(appendingArray[*currentSize], endPointer, stringSize * sizeof(char));
+    memcpy(appendingArray[*currentSize], backPointer, stringSize * sizeof(char));
     appendingArray[(*currentSize)++][stringSize] = '\0';
     
     return appendingArray;
