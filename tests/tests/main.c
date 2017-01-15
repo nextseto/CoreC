@@ -12,7 +12,7 @@
 #include "ArrayHelperTests.h"
 #include "StringHelper.h"
 #include "ConsoleTests.h"
-
+#include "FileSystem.h"
 
 int main(int argc, const char * argv[])
 {
@@ -49,7 +49,7 @@ int main(int argc, const char * argv[])
     
     /// Test 2 : stringSplit
     
-    char* newString = stringReplace(temp, ".", " ");
+    char* newString = stringReplace(temp, ".", " - ");
 
     printf("\nResult String from stringRepalce > {%s} \n\n", newString);
     

@@ -127,8 +127,7 @@ char* stringReplace(char* input, const char* oldSubString, const char* newSubStr
             }
         }
         
-        outputString[inputLength] = (*startPointer);
-        inputLength++;
+        outputString[inputLength++] = *startPointer;
         startPointer++;
     }
     
@@ -156,8 +155,8 @@ char** _stringAppend2D(char* startPointer, char* endPointer, char** appendingArr
  */
 StringArray stringSplit(char* inputString, const char* seperatorString)
 {
-    int stringCount = 0, startSize = 10;
-    char** output = malloc(startSize * sizeof(char*));
+    int stringCount = 0, bufferSize = 10;
+    char** output = malloc(bufferSize * sizeof(char*));
     
     char* startPointer = inputString;
     char* endPointer = inputString;
@@ -170,7 +169,7 @@ StringArray stringSplit(char* inputString, const char* seperatorString)
         {
             if (!strncmp(startPointer, seperatorString, seperatorSize))
             {
-                output = _stringAppend2D(startPointer, endPointer, output, &stringCount, &startSize);
+                output = _stringAppend2D(startPointer, endPointer, output, &stringCount, &bufferSize);
                 
                 startPointer += seperatorSize;
                 endPointer = startPointer;
@@ -249,7 +248,7 @@ char** _stringAppend2D(char* startPointer, char* endPointer, char** appendingArr
         if (*alertSize - *currentSize < 3)
         {
             appendingArray = realloc(appendingArray, sizeof(char*) * (*currentSize + *alertSize));
-            (*alertSize)++;
+            *alertSize += *alertSize;
         }
     }
     
@@ -261,9 +260,7 @@ char** _stringAppend2D(char* startPointer, char* endPointer, char** appendingArr
     appendingArray[*currentSize] = malloc((stringSize + 1) * sizeof(char));
     
     memcpy(appendingArray[*currentSize], endPointer, stringSize * sizeof(char));
-    appendingArray[*currentSize][stringSize] = '\0';
-    
-    (*currentSize)++;
+    appendingArray[(*currentSize)++][stringSize] = '\0';
     
     return appendingArray;
 }
